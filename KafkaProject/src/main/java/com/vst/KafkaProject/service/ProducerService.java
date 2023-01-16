@@ -11,6 +11,6 @@ public class ProducerService {
 	KafkaTemplate<String, String> kafkaTemplate;
 	
 	public void sendMessageToTopic(String message) {
-		kafkaTemplate.send("TestTopic", message);
+		kafkaTemplate.send("SecondTopic", message);
 	}
 }
