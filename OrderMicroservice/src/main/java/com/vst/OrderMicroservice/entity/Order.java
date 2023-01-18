@@ -21,6 +21,7 @@ public class Order {
 	
 	@Id
 	int id;
+	
 	String name;
 	int qty;
 	String price;

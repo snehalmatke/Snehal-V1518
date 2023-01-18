@@ -30,14 +30,14 @@ public class OrderService {
 		Payment payment = request.getPayment();
 		System.out.println(payment);
 
-		payment.setOredrId(order.getId());
+		payment.setOrderId(order.getId());
 		System.out.println(payment);
 
 		payment.setAmount(order.getPrice());
 		System.out.println(payment);
 
 		//rest call for template 
-		Payment paymentResponse = restTemplate.postForObject("http://PaymentService/payment/doPayment", payment, Payment.class);
+		Payment paymentResponse = restTemplate.postForObject("http://PAYMENT-SERVICE/payment/doPayment", payment, Payment.class);
 		System.out.println(paymentResponse);
 
 		response = paymentResponse.getPaymentStatus().equals("success")?"payment processing sucessfull and order placed":"there is a failure in payment api , order added to cart";

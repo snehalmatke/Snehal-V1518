@@ -19,9 +19,10 @@ public class Payment {
 	
 	@Id
 	int paymentId;
+	
 	String paymentStatus;
 	String transactionId;
 	
-	int oredrId;
+	int orderId;
 	String amount;
 }

@@ -6,5 +6,7 @@ import com.vst.PaymentMicroservice.entity.Payment;
 
 public interface PaymentRepository extends MongoRepository<Payment, Integer>{
 
-	
+	Payment findByOrderId(int orderId);
+
+
 }

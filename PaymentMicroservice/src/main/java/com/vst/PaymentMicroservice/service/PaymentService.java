@@ -25,4 +25,10 @@ public class PaymentService {
 		//api should be third party payment getway (paypal,paytm)
 		return new Random().nextBoolean()?"success":"false";
 	}
+	
+	public Payment findPaymentHistoryByOrderId(int orderId) {
+		return paymentRepo.findByOrderId(orderId);
+	}
+	
+	
 }
