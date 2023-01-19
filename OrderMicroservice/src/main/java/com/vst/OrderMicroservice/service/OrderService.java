@@ -25,27 +25,32 @@ public class OrderService {
 	public TransactionResponse saveOrder(TransactionRequest request) {
 		String response= "";
 		Order order = request.getOrder();
-		System.out.println(order);
+		//System.out.println(order);
 		
 		Payment payment = request.getPayment();
-		System.out.println(payment);
+		//System.out.println(payment);
 
 		payment.setOrderId(order.getId());
-		System.out.println(payment);
+		//System.out.println(payment);
 
 		payment.setAmount(order.getPrice());
-		System.out.println(payment);
+		//System.out.println(payment);
 
 		//rest call for template 
 		Payment paymentResponse = restTemplate.postForObject("http://PAYMENT-SERVICE/payment/doPayment", payment, Payment.class);
-		System.out.println(paymentResponse);
+		//System.out.println(paymentResponse);
 
 		response = paymentResponse.getPaymentStatus().equals("success")?"payment processing sucessfull and order placed":"there is a failure in payment api , order added to cart";
-		System.out.println(response);
+		//System.out.println(response);
 		orderRepository.save(order);
-		System.out.println(order);
+		//System.out.println(order);
 		 return new TransactionResponse(order,paymentResponse.getAmount(),paymentResponse.getTransactionId(),response);
 		 
+	}
+
+	
+	public TransactionResponse getByOrderId(Order order) {
+		return orderRepository.findByOrderId(order);
 	}
 
 	
