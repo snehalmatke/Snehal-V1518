@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.kafka.annotation.KafkaListener;
 
 import com.vst.host.model.HostDetails;
 
@@ -41,6 +42,6 @@ public interface HostRepo extends MongoRepository<HostDetails, Integer> {
 	//@Query("{'numberOfDevice':{'$gte' : '?0','lt': '?1'}}")
 	//public List<HostDetails> findBySaleDateByNumberOfDeviceBetween(String minNumberOfDevice, String maxNumberOfDevice);
 	
-	
+
 
 }

@@ -218,7 +218,7 @@ public class HostController {
 		}
 
 		return true;
-	}}
+	}
 
 
 // Query criteria
@@ -233,3 +233,10 @@ public class HostController {
 //	public List<HostDetails> findBySaleDateByNumberOfDeviceBetween(@PathVariable String minNumberOfDevice,@PathVariable String maxNumberOfDevice){
 //		return hostService.findBySaleDateByNumberOfDeviceBetween(minNumberOfDevice, maxNumberOfDevice);
 //	}}
+
+	@GetMapping("producer")
+	public void sendMessageFromClient(@RequestParam("message") String message) {
+		 hostService.getMessageToTopic(message);
+	}}
+
+

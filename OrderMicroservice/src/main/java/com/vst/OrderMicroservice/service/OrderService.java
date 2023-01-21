@@ -48,10 +48,26 @@ public class OrderService {
 		 
 	}
 
-	
-	public TransactionResponse getByOrderId(Order order) {
-		return orderRepository.findByOrderId(order);
+//	public TransactionResponse findById(TransactionRequest request) {
+//		Order order = request.getOrder();
+//		
+//		//Payment payment = request.getPayment();
+//		//payment.setOrderId(order.getId());
+//		//payment.setAmount(order.getPrice());
+//		
+//		//Payment requestPayment = restTemplate.postForObject("http://PAYMENT-SERVICE/payment/doPayment", payment, Payment.class);
+//
+//		
+//		return new TransactionResponse();
+//	}
+
+	public Order findById(Order order) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	
+
 
 	
 }

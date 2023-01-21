@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.vst.host.exception.HostException;
@@ -17,6 +19,9 @@ public class HostServiceImpl implements HostServiceInteface {
 
 	@Autowired
 	HostRepo hrepo;
+	
+	@Autowired
+	KafkaTemplate<String, String> kafkaTemplate;
 
 	@Override
 	@Transactional // to avoid rollback on listed exceptions
@@ -175,13 +180,20 @@ public class HostServiceImpl implements HostServiceInteface {
 		return hrepo.findByChargerCapacity(chargerCapacity);
 	}
 
+	public void getMessageToTopic(String message) {
+		kafkaTemplate.send("Host", message);
+	}
+
 //	@Override
 //	public List<HostDetails> findBySaleDateByNumberOfDeviceBetween(String minNumberOfDevice, String maxNumberOfDevice) {
 //		// TODO Auto-generated method stub
 //		return hrepo.findBySaleDateByNumberOfDeviceBetween(minNumberOfDevice, maxNumberOfDevice);
 //	}
 //	
-
+	@KafkaListener(topics="Host",groupId="HostGroup")
+	public void listenToTopic(String recevideMessage) {
+	System.out.println("The message recevide is" + recevideMessage);
+	}
 
 	
 }

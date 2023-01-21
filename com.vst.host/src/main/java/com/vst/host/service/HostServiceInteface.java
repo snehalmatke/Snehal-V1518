@@ -2,6 +2,7 @@ package com.vst.host.service;
 
 import java.util.List;
 
+
 import com.vst.host.model.HostDetails;
 
 public interface HostServiceInteface {
@@ -41,9 +42,8 @@ public interface HostServiceInteface {
 	public List<HostDetails> findByChargerCapacity(String chargerCapacity);
 	
 	//public List<HostDetails> findBySaleDateByNumberOfDeviceBetween(String minNumberOfDevice, String maxNumberOfDevice);
-
 	
-	
+		
 	
 
 }

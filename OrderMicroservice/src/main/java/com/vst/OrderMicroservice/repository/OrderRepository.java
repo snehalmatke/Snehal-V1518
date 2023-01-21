@@ -7,6 +7,8 @@ import com.vst.OrderMicroservice.entity.Order;
 
 public interface OrderRepository extends MongoRepository<Order, Integer>{
 
-	TransactionResponse findByOrderId(Order order);
+//	TransactionResponse findByOrderId(Order order);
+//
+//	TransactionResponse findByOrderId(TransactionResponse response);
 
 }

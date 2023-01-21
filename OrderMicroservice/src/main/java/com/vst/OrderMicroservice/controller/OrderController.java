@@ -39,10 +39,16 @@ public class OrderController {
 		return orderService.saveOrder(request);
 	}
 
-	@GetMapping("/orderId")
-	public TransactionResponse getByOrderId(@RequestParam TransactionResponse response) {
-		Order order= response.getOrder();
-		return orderService.getByOrderId(order);
+//	@GetMapping("/{Id}")
+//	public TransactionResponse getById(@PathVariable TransactionRequest request) {
+//		Order order= request.getOrder();
+//		return orderService.findById(request);
+//	}
+	
+	
+	@GetMapping("/{id}")
+	public Order getByid(@PathVariable Order order) {
+		return orderService.findById(order);
 	}
 
 	
