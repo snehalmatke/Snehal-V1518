@@ -32,7 +32,6 @@ public class HostServiceImpl implements HostServiceInteface {
 
 	@Override
 	public HostDetails getHostId(Integer id) {
-		// TODO Auto-generated method stub
 		HostDetails hdetails = hrepo.findByIdAndIsActiveSatus(id);
 		if (hdetails.isIsActiveSatus() == true) {
 			return hdetails;
@@ -57,7 +56,6 @@ public class HostServiceImpl implements HostServiceInteface {
 	
 	@Override
 	public boolean updateHost(Integer id, HostDetails hostdetails) {
-		// TODO Auto-generated method stub
 		HostDetails obj = hrepo.findById(id).get();
 		if (hostdetails.getHostName() != null) {
 			obj.setHostName(hostdetails.getHostName());
@@ -103,93 +101,81 @@ public class HostServiceImpl implements HostServiceInteface {
 
 	@Override
 	public List<HostDetails> findHostListService() {
-		// TODO Auto-generated method stub
 		return hrepo.findAll();
 
 	}
 
 	@Override
 	public List<HostDetails> findByHostName(String hostName) {
-		// TODO Auto-generated method stub
 		return hrepo.findByHostName(hostName);
 	}
 
 	@Override
 	public List<HostDetails> findByHostAddress(String hostAddress) {
-		// TODO Auto-generated method stub
 		return hrepo.findByHostAddress(hostAddress);
 	}
 
 	@Override
 	public HostDetails findByCustomerId(Integer customerId) {
-		// TODO Auto-generated method stub
 		return hrepo.findByCustomerId(customerId).get(0);
 	}
 
 	@Override
 	public List<HostDetails> findByDevice(String device) {
-		// TODO Auto-generated method stub
 		return hrepo.findByDevice(device);
 	}
 
 	@Override
 	public List<HostDetails> findByManufacturingDate(String manufacturingDate) {
-		// TODO Auto-generated method stub
 		return hrepo.findByManufacturingDate(manufacturingDate);
 	}
 
 	@Override
 	public List<HostDetails> findBySaleDate(String saleDate) {
-		// TODO Auto-generated method stub
 		return hrepo.findBySaleDate(saleDate);
 	}
 
 	@Override
 	public List<HostDetails> findByNumberOfDevice(String numberOfDevice) {
-		// TODO Auto-generated method stub
 		return hrepo.findByNumberOfDevice(numberOfDevice);
 	}
 
 	@Override
 	public List<HostDetails> findByUnitPrice(String unitPrice) {
-		// TODO Auto-generated method stub
 		return hrepo.findByUnitPrice(unitPrice);
 	}
 
 	@Override
 	public List<HostDetails> findByDeviceType(String deviceType) {
-		// TODO Auto-generated method stub
 		return hrepo.findByDevice(deviceType);
 	}
 
 	@Override
 	public List<HostDetails> findByAdaptorType(String adaptorType) {
-		// TODO Auto-generated method stub
 		return hrepo.findByAdaptorType(adaptorType);
 	}
 
 	@Override
 	public List<HostDetails> findByDeviceLogoName(String deviceLogoName) {
-		// TODO Auto-generated method stub
 		return hrepo.findByDeviceLogoName(deviceLogoName);
 	}
 
 	@Override
 	public List<HostDetails> findByChargerCapacity(String chargerCapacity) {
-		// TODO Auto-generated method stub
 		return hrepo.findByChargerCapacity(chargerCapacity);
 	}
-
-	public void getMessageToTopic(String message) {
-		kafkaTemplate.send("Host", message);
-	}
-
 //	@Override
 //	public List<HostDetails> findBySaleDateByNumberOfDeviceBetween(String minNumberOfDevice, String maxNumberOfDevice) {
 //		// TODO Auto-generated method stub
 //		return hrepo.findBySaleDateByNumberOfDeviceBetween(minNumberOfDevice, maxNumberOfDevice);
 //	}
 //	
+
+	public void getMessageToTopic(String message) {
+		kafkaTemplate.send("Host", message);
+	}
+
+
 	@KafkaListener(topics="Host",groupId="HostGroup")
 	public void listenToTopic(String recevideMessage) {
 	System.out.println("The message recevide is" + recevideMessage);

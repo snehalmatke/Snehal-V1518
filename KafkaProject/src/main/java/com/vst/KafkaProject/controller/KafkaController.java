@@ -14,8 +14,10 @@ public class KafkaController {
 	ProducerService producerService;
 	
 	@GetMapping("/producer")
-	public void getmessageFromClient(@RequestParam("message") String message) {
+	public String getmessageFromClient(@RequestParam("message") String message) {
 		
 		producerService.sendMessageToTopic(message);
+		return "data publish";
+	
 	}
 }

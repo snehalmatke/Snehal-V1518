@@ -234,9 +234,21 @@ public class HostController {
 //		return hostService.findBySaleDateByNumberOfDeviceBetween(minNumberOfDevice, maxNumberOfDevice);
 //	}}
 
-	@GetMapping("producer")
-	public void sendMessageFromClient(@RequestParam("message") String message) {
-		 hostService.getMessageToTopic(message);
-	}}
+//	@GetMapping("/producer")
+//	public String sendMessageFromClient(@RequestParam("message") String message) {
+//		 hostService.getMessageToTopic(message);
+//		 return "Data published";
+//	}
+	
+	@GetMapping("/producer")
+	public String sendMessageFromClient(@RequestParam("hostName") String hostName) {
+		 hostService.getMessageToTopic(hostName);
+		 return "Data published";
+	}
+
+}
+	
+	
+
 
 
